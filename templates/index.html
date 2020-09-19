@@ -13,6 +13,12 @@
     <body>
         <h1 id="title">Tweets about Cocktails</h1>
         
+        <form method="GET">
+          <label for="search"></label>
+              <input type="text" id="search" name="search" placeholder="Enter keyword">
+              <input type="submit" value="go">
+        </form>
+        
         <div class="grid">
             {% for i in range(0, name_len) %} 
                 <div class="tweet">

@@ -4,6 +4,7 @@ import datetime
 from time import strftime
 import flask
 import random
+from flask import request
 
 from os.path import join, dirname
 from dotenv import load_dotenv
@@ -22,15 +23,21 @@ auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
-@app.route('/')
+@app.route('/', methods=["GET"])
 def get_tweet():
     
     #get tweets from search
-    query = "drink " 
-    drink_list = ["margarita", "mojito", "moscow mule", "martini", "mai tai", "whiskey sour", "gimlet", "jello shot", "negroni"]
-    drink = random.choice(drink_list)
-    query += drink
-    drink_list.remove(drink)
+    query = request.args.get("search")
+    
+    if query == None:
+        #add featured drinks to page
+        query = "drink " 
+        drink_list = ["margarita", "mojito", "moscow mule", "martini", "mai tai", "whiskey sour", "gimlet", "jello shot", "negroni"]
+        drink = random.choice(drink_list)
+        query += drink
+        drink_list.remove(drink)
+    
+    query += "  drink" #add keyword drink for more relevant results
     
     #request tweets using keyword in full text and english
     get_tweets = api.search(query, lang='en', tweet_mode='extended')
@@ -45,6 +52,7 @@ def get_tweet():
     for tweet in get_tweets:
         
         #dont repeat the same user
+        #TODO add a time interval between 6pm tp 12mid for relevant search
         if counter < 3 and tweet.user.screen_name not in user_list:
             
             name_list.append(tweet.user.name)
