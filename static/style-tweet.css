@@ -1,0 +1,45 @@
+body {
+    font-family: "Caveat Brush";
+    font-size: 27px;
+    background-color: Lightpink;
+    text-align: center;
+}
+
+#name, #user {
+    font-size: 18px;
+    font-family: "Josefin Slab";
+}
+
+#text {
+    font-size: 25px;
+    font-family: "Caveat Brush";
+}
+
+#time {
+    font-size: 13px;
+    font-family: "Roboto Condensed";
+}
+
+.grid {
+    display: inline-grid;
+    height: 200px;
+    width: 800px;
+    grid-template-columns: 1fr  1fr 1fr;
+    grid-gap: 20px;
+    background-image: url("bar.jpg");
+    background-position: center;
+    background-size: cover;
+    padding: 55px;
+}
+
+.tweet {
+    background-color: #742B36;
+    opacity: 0.98;
+    padding: 22px;
+    color: #FAFDFF;
+    border-radius: 15px;
+    font-family: "Caveat Brush";
+    font-size: 15px;
+    /*background-position: center;*/
+    /*background-size: cover;*/
+}
