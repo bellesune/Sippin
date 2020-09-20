@@ -1,12 +1,24 @@
 body {
-    font-family: "Caveat Brush";
-    font-size: 27px;
-    background-color: Lightpink;
+    font-family: "Helvetica";
+    font-size: 18px;
+    color: black;
     text-align: center;
+}
+#title {
+    font-family: "Rubik Mono One";
+    font-size: 110px;
+    font-weight: 400;
+    color: white;
+    background-image: url("cocktail-bg.jpg");
+    opacity: .92;
+    background-position: center top;
+    background-size: cover;
+    padding: 200px;
 }
 
 #name, #user {
     font-size: 18px;
+    text-align: center;
     font-family: "Josefin Slab";
 }
 
@@ -22,24 +34,21 @@ body {
 
 .grid {
     display: inline-grid;
-    height: 200px;
-    width: 800px;
+    height: 600px;
+    width: 1200px;
     grid-template-columns: 1fr  1fr 1fr;
-    grid-gap: 20px;
-    background-image: url("bar.jpg");
-    background-position: center;
-    background-size: cover;
-    padding: 55px;
+    grid-gap: 25px;
+    background-color: #9b2c2c;
+    opacity: 0.93;
+    padding: 55px;  
 }
 
 .tweet {
-    background-color: #742B36;
-    opacity: 0.98;
-    padding: 22px;
-    color: #FAFDFF;
     border-radius: 15px;
-    font-family: "Caveat Brush";
-    font-size: 15px;
-    /*background-position: center;*/
-    /*background-size: cover;*/
+    padding: 28px;
+    color: black;
+    background-color: white;
+    background-image: url("overlay1.png");
+    background-position: center;
+    background-size: cover;
 }

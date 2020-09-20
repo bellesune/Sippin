@@ -50,9 +50,7 @@ def get_tweet():
     time_list = []
     
     for tweet in get_tweets:
-        
         #dont repeat the same user
-        #TODO add a time interval between 6pm tp 12mid for relevant search
         if counter < 3 and tweet.user.screen_name not in user_list:
             
             name_list.append(tweet.user.name)
@@ -60,7 +58,7 @@ def get_tweet():
             text_list.append(tweet.full_text)
             time_list.append(tweet.created_at.strftime("%a, %d %b %Y  |  %H:%M"))
             counter += 1
-            
+    
     return flask.render_template(
         "index.html",
         name_list = name_list,

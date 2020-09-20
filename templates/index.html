@@ -1,27 +1,28 @@
 <html>
     <head>
-        <title>Cocktail Tweets</title>
-        <!--list fonts here-->
+        <title>Mix of Tweets</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Caveat Brush">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik Mono One">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto Condensed">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin Slab">
-        
         <link rel="stylesheet" href={{ url_for("static", filename="style-tweet.css") }} >
-        <!--<link rel="stylesheet" href="./static/style-tweet.css">-->
-        
     </head>
+    
     <body>
-        <h1 id="title">Tweets about Cocktails</h1>
-        
+        <h1 id="title">Mix of Tweets</h1>
         <form method="GET">
-          <label for="search"></label>
-              <input type="text" id="search" name="search" placeholder="Enter keyword">
-              <input type="submit" value="go">
+            <label for="search"></label>
+                <input type="text" id="search" name="search" placeholder="Enter cocktail">
+                <input type="submit" value="go">
         </form>
         
+        {% if name_len == 0 %}
+            <div id="else">Cannot find the cocktail. Try 'margarita', 'whiskey sour', or 'cosmopolitan'</div>
+        {% else %}
         <div class="grid">
             {% for i in range(0, name_len) %} 
                 <div class="tweet">
+                    <img src="./static/twitter-logo.png" style="float:left; height:27px; width:27px;"/>
                     <div id="name">{{ name_list[i] }}</div>
                     <div id="user">@{{ user_list[i] }}</div><br>
                     <div id="text">"{{ text_list[i] }}"</div><br>
@@ -29,5 +30,6 @@
                 </div>
             {% endfor %}
         </div>
+        {% endif %}
     </body>
 </html>
