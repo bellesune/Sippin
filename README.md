@@ -47,15 +47,48 @@ git push origin master
 -------------------
 ### Troubleshooting some common technical issues
 
-##### Error in installing module (flask, tweepy, dotenv)
-Try one of the following command:
-```bash
-sudo pip3 install [module]
-pip install [module]
-pip3 install [module]
-```
+#### Command not found while installing module (flask, tweepy, dotenv) in terminal
 
-#####  Cannot see the tweet output:
+pip command will install the packages in Python. When this error (see below) occurs it means that the executable path is not in PATH variable.
+```bash
+sudo: pip: command not found
+```
+Go to the root directory and add the executable path to PATH variable.
+```bash
+cd ~
+which pip
+```
+Copy (ctrl + c) the output of _which pip_ and open a text editor (vim).
+```bash
+vim .bashrc
+```
+When the text editor opens, look for 'export PATH=$PATH:$HOME..../bin:', this should be on the first few lines but this might be different in your local machine. At the very end of this line paste (ctrl + v) the output of 'which pip' to the end of PATH, don't add any space. Save and quit the .bashrc by typing ':wq'.
+In your terminal, source the .bashrc:
+```bash
+source ~/.bashrc
+```
+Try one of the following command again:
+```bash
+pip install [module]
+sudo pip install [module]
+```
+Resources: [AskUbuntu](https://askubuntu.com/questions/885479/pip-is-apparently-installed-but-not-working)
+
+####  Internal Server Error
+
+When getting the Internal Server Error when opening the html page, the server is preventing the page to load because of incorrect permission. Most common mistakes are in the access keys provided. Check the following:
+
 + Double check the spelling of __KEY, SECRET, TOKEN, SECRET_TOKEN__ in _tweet.env_ and  this should all match in the _get_tweet.py_
 + Make sure the _tweet.env_ matches the text in .gitignore
-+ Check your Twitter keys in your Twitter account, copy and paste the keys again, it is possible you copied the wrong key to another variable
++ Check your Twitter keys in your [Twitter account dashboard](https://developer.twitter.com/en/portal/dashboard), copy and paste the keys again, it is possible you copied the wrong key to another variable
+
+------------------------
+### Known problems
+
+#### Retweeting the same tweet
+
+When viewing the tweets on the webpage, some users retweet the same tweets hence resulting the same tweets in the page. This can be solved by picking a user who did not retweet the previous tweet.
+Tweets has an attribute entities which includes mentions, tagging a user. We can filter the tweets by collecting the username of tweets and get the tweet's mention/s (if any) and compare if it matches to any in the username list.
+
+Resources: [Tweet object documentation] (https://developer.twitter.com/en/docs/twitter-api/v1/data-dictionary/overview/tweet-object) and [Entities object documentation](https://developer.twitter.com/en/docs/twitter-api/v1/data-dictionary/overview/entities-object
+)
