@@ -43,6 +43,64 @@ git push origin master
  ```
  
 8. When prompted, enter your Github credentials. Refresh your Github page and you should be able to see your code here.
+
+------------------
+
+##### When deploying the app to Heroku, a cloud platform that hosts web applications
+
+Sign up to [Heroku](https://signup.heroku.com/)
+Type the following command in your terminal:
+```bash
+nvm i v8
+npm install -g heroku
+heroku login -i
+git remote remove origin && git remote add origin [your-Git-repo-name]
+git remote -v
+heroku create
+git remote -v
+touch requirements.txt
+touch Procfile
+```
+Copy the text below to _requirements.txt_
+```
+Flask 
+tweepy
+python-dotenv
+```
+Copy the text below to _Procfile_
+```
+web: python get_tweet.py
+```
+Then type the commands in your terminal
+```bash
+git add Procfile
+git add requirements.txt
+git commit -am "Add heroku file"
+git pull origin master
+git push origin master
+git push heroku master
+```
+Remember the name of your Heroku link. Then login to [Heroku](https://id.heroku.com/login)
+Click the name of the link of your heroku
+Go to Settings and look for __Config Vars__, click 'Reveal Config Vars'
+Add your access keys in here, which can be found in your _tweet.env_ file.
+Go back to your terminal and type the command below. Click the Heroku link to open your app.
+```bash
+git push heroku master
+```
+
+##### If you don't want to deploy your web app in Heroku
+
+Add the following code above "app = flask.Flask(__name__)" in _get_tweet.py_
+
+```python
+from os.path import join, dirname
+from dotenv import load_dotenv
+dotenv_path = join(dirname(__file__), 'tweet.env')
+load_dotenv(dotenv_path)
+```
+
+_Heroku section: updated as of 09/21/20_
  
 -------------------
 ### Troubleshooting some common technical issues
@@ -90,5 +148,4 @@ When getting the Internal Server Error when opening the html page, the server is
 When viewing the tweets on the webpage, some users retweet the same tweets hence resulting the same tweets in the page. This can be solved by picking a user who did not retweet the previous tweet.
 Tweets has an attribute entities which includes mentions, tagging a user. We can filter the tweets by collecting the username of tweets and get the tweet's mention/s (if any) and compare if it matches to any in the username list.
 
-Resources: [Tweet object documentation] (https://developer.twitter.com/en/docs/twitter-api/v1/data-dictionary/overview/tweet-object) and [Entities object documentation](https://developer.twitter.com/en/docs/twitter-api/v1/data-dictionary/overview/entities-object
-)
+Resources: [Tweet object documentation] (https://developer.twitter.com/en/docs/twitter-api/v1/data-dictionary/overview/tweet-object) and [Entities object documentation](https://developer.twitter.com/en/docs/twitter-api/v1/data-dictionary/overview/entities-object)
