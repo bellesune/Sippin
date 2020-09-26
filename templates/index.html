@@ -15,6 +15,12 @@
         <h5>{{ serving }} servings</h5>
         <img src="{{image}}"/>
         
+        <ul>
+            {% for x in ingredients %}
+            <li>{{ x }}</li>
+            {%endfor%}
+        </ul>
+        
         <ol>
             {% for i in steps %}
             <li>{{ i }}</li>

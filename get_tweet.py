@@ -55,12 +55,24 @@ def get_recipe():
     steps = [json_body["results"][drink]["analyzedInstructions"][0]["steps"][i]["step"] for i in range(0,steps_num)]
     
     return idNum, title, prep_time, serving, image, steps_num, steps
+ 
+ #get ingredients using id, create a second url and request
+def get_ingredients(idNum):
+    url2 = "https://api.spoonacular.com/recipes/{}/information?includeNutrition=false&apiKey={}".format(idNum, spoonacular_key)
+    response2 = requests.get(url2)
+    json_body2 = response2.json()
+
+    ingredients_len = len(json_body2["extendedIngredients"])
+    ingredients = [json_body2["extendedIngredients"][i]["original"] for i in range(0, ingredients_len)]
+    
+    return ingredients
     
 
 @app.route('/', methods=["GET"])
 def get_tweet():
     
     idNum, title, prep_time, serving, image, steps_num, steps = get_recipe()
+    ingredients = get_ingredients(idNum)
     
     #get tweets from search
     query = request.args.get("search")
@@ -107,7 +119,8 @@ def get_tweet():
         prep_time = prep_time,
         serving = serving,
         image = image,
-        steps = steps
+        steps = steps,
+        ingredients = ingredients
         )
 
 app.run(
