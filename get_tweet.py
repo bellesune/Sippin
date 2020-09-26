@@ -51,13 +51,16 @@ def get_recipe():
     serving = json_body["results"][drink]["servings"]
     image = json_body["results"][drink]["image"]
     
-    return idNum, title, prep_time, serving, image
+    steps_num = len(json_body["results"][drink]["analyzedInstructions"][0]["steps"])
+    steps = [json_body["results"][drink]["analyzedInstructions"][0]["steps"][i]["step"] for i in range(0,steps_num)]
+    
+    return idNum, title, prep_time, serving, image, steps_num, steps
     
 
 @app.route('/', methods=["GET"])
 def get_tweet():
     
-    idNum, title, prep_time, serving, image = get_recipe()
+    idNum, title, prep_time, serving, image, steps_num, steps = get_recipe()
     
     #get tweets from search
     query = request.args.get("search")
@@ -104,6 +107,7 @@ def get_tweet():
         prep_time = prep_time,
         serving = serving,
         image = image,
+        steps = steps
         )
 
 app.run(
