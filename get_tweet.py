@@ -7,7 +7,19 @@ import random
 from flask import request
 import requests
 
+#test keys here
+from os.path import join, dirname
+from dotenv import load_dotenv
+dotenv_path = join(dirname(__file__), 'tweet.env')
+load_dotenv(dotenv_path)
+
+from os.path import join, dirname
+from dotenv import load_dotenv
+dotenv_path = join(dirname(__file__), 'spoonacular.env')
+load_dotenv(dotenv_path)
+
 app = flask.Flask(__name__)
+
 
 #Twitter access keys and tokens, hidden in tweet.env
 consumer_key = os.environ['KEY']
