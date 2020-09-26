@@ -15,6 +15,12 @@
         <h5>{{ serving }} servings</h5>
         <img src="{{image}}"/>
         
+        <ol>
+            {% for i in steps %}
+            <li>{{ i }}</li>
+            {%endfor%}
+        </ol>
+        
         <h1 id="title">Mix of Tweets</h1>
         <form method="GET">
             <label for="search"></label>
