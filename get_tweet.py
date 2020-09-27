@@ -41,7 +41,8 @@ def get_recipe(query):
     response = requests.get(url)
     json_body = response.json()
     
-    drink = 1 #drink index
+    totalResults = json_body["totalResults"]
+    drink = random.randint(0,totalResults-1)
     
     idNum = json_body["results"][drink]["id"]
     title = json_body["results"][drink]["title"]
@@ -65,24 +66,10 @@ def get_ingredients(idNum):
     ingredients = [json_body2["extendedIngredients"][i]["original"] for i in range(0, ingredients_len)]
     
     return ingredients
-    
-
-@app.route('/', methods=["GET"])
-def get_tweet():
-    
-    #get tweets from search
-    query = request.args.get("search")
-    
-    if query == None:
-        #add featured drinks to page
-        drink_list = ["margarita", "mojito", "moscow mule", "martini", "pina colada", "mint julep", "whiskey sour"]
-        drink = random.choice(drink_list)
-        query = drink
-        
-    #get details and ingredients of query
-    idNum, title, prep_time, serving, image, link, steps = get_recipe(query)
-    ingredients = get_ingredients(idNum)
-    
+ 
+#get tweets from twitter
+def get_quotes(query):
+  
     #request tweets using keyword in full text and english
     get_tweets = api.search(query, lang='en', tweet_mode='extended')
     
@@ -102,6 +89,29 @@ def get_tweet():
             text_list.append(tweet.full_text)
             time_list.append(tweet.created_at.strftime("%a, %d %b %Y  |  %H:%M"))
             counter += 1
+            
+    return name_list, user_list, text_list, time_list
+
+
+@app.route('/', methods=["GET"])
+def get_tweet():
+    
+    #get tweets from search
+    query = request.args.get("search")
+    
+    #add a random drink in the beginning
+    if query == None:
+        #add featured drinks to page
+        drink_list = ["margarita", "mojito", "moscow mule", "martini", "pina colada", "mint julep", "whiskey sour"]
+        drink = random.choice(drink_list)
+        query = drink
+        
+    #get details and ingredients of query
+    idNum, title, prep_time, serving, image,link, steps = get_recipe(query)
+    ingredients = get_ingredients(idNum)
+    
+    #get quotes based on query
+    name_list, user_list, text_list, time_list = get_quotes(query)
     
     return flask.render_template(
         "index.html",
