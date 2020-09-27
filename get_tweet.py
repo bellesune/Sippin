@@ -35,9 +35,9 @@ auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
 #get basic details, id, title, prep time, serving, image
-def get_recipe():
+def get_recipe(query):
     
-    query = "mojito"
+   # query = "mojito"
     
     url = "https://api.spoonacular.com/recipes/complexSearch?query={}&addRecipeInformation=true&apiKey={}".format(query, spoonacular_key)
     response = requests.get(url)
@@ -54,9 +54,9 @@ def get_recipe():
     steps_num = len(json_body["results"][drink]["analyzedInstructions"][0]["steps"])
     steps = [json_body["results"][drink]["analyzedInstructions"][0]["steps"][i]["step"] for i in range(0,steps_num)]
     
-    return idNum, title, prep_time, serving, image, steps_num, steps
+    return idNum, title, prep_time, serving, image, steps
  
- #get ingredients using id, create a second url and request
+#get ingredients using id, create a second url and request
 def get_ingredients(idNum):
     url2 = "https://api.spoonacular.com/recipes/{}/information?includeNutrition=false&apiKey={}".format(idNum, spoonacular_key)
     response2 = requests.get(url2)
@@ -71,21 +71,20 @@ def get_ingredients(idNum):
 @app.route('/', methods=["GET"])
 def get_tweet():
     
-    idNum, title, prep_time, serving, image, steps_num, steps = get_recipe()
-    ingredients = get_ingredients(idNum)
-    
     #get tweets from search
     query = request.args.get("search")
     
     if query == None:
         #add featured drinks to page
-        query = "drink " 
-        drink_list = ["margarita", "mojito", "moscow mule", "martini", "mai tai", "whiskey sour", "gimlet", "jello shot", "negroni"]
+        #query = "drink " 
+        drink_list = ["margarita", "mojito", "moscow mule", "martini", "kahlua"]
         drink = random.choice(drink_list)
-        query += drink
-        drink_list.remove(drink)
+        query = drink
+        #drink_list.remove(drink)
+    #query += "  drink" #add keyword drink for more relevant results
     
-    query += "  drink" #add keyword drink for more relevant results
+    idNum, title, prep_time, serving, image, steps = get_recipe(query)
+    ingredients = get_ingredients(idNum)
     
     #request tweets using keyword in full text and english
     get_tweets = api.search(query, lang='en', tweet_mode='extended')
