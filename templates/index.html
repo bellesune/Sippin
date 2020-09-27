@@ -15,42 +15,41 @@
                 <input type="text" id="search" name="search" placeholder="Enter cocktail">
                 <input type="submit" value="go">
         </form>
-        
-        <h2 id="recipe">{{ title }}</h2>
-        <img id="drink" height="465px" width="465px" src="{{image}}"/>
-        
-        <div id="prep_time"><img height="20px" width="20px" src="./static/time.png" /> {{ prep_time }} mins</div>
-        <div id="serving"> <img height="20px" width="20px" src="./static/serving.png" /> {{ serving }} glass</div>
-        
-        <div id="ingredients-header">Ingredients</div>
-        {% for item in ingredients %}
-            <div class="ingredients">
-                    {{ item }}
-            </div>
-        {%endfor%}
-        
-        {% for step in steps %}
-        <div class="steps">
-                {{ step }}
-        </div>
-        {%endfor%}
-        
-        <span id="recipe_link">source: <a href="{{link}}">{{link}}</a></span>
-        
-        {% if name_len == 0 %}
-            <div id="else">Cannot find the cocktail. Try 'margarita', 'whiskey sour', or 'cosmopolitan'</div>
+        {% if totalResults == 0 %}
+            <div id="else">Cannot find the {{ query }}. Try 'margarita', 'whiskey sour', or 'cosmopolitan'</div>
         {% else %}
-        <div class="grid">
-            {% for i in range(0, name_len) %} 
-                <div class="tweet">
-                    <img src="./static/twitter-logo.png" style="float:left; height:27px; width:27px;"/>
-                    <div id="name">{{ name_list[i] }}</div>
-                    <div id="user">@{{ user_list[i] }}</div><br>
-                    <div id="text">"{{ text_list[i] }}"</div><br>
-                    <div id="time">{{ time_list[i] }}</div>
+            <h2 id="recipe">{{ title }}</h2>
+            <img id="drink" height="465px" width="465px" src="{{image}}"/>
+            
+            <div id="prep_time"><img height="20px" width="20px" src="./static/time.png" /> {{ prep_time }} mins</div>
+            <div id="serving"> <img height="20px" width="20px" src="./static/serving.png" /> {{ serving }} glass</div>
+            
+            <div id="ingredients-header">Ingredients</div>
+            {% for item in ingredients %}
+                <div class="ingredients">
+                        {{ item }}
                 </div>
-            {% endfor %}
-        </div>
+            {%endfor%}
+            
+            {% for step in steps %}
+            <div class="steps">
+                    {{ step }}
+            </div>
+            {%endfor%}
+            
+            <span id="recipe_link">source: <a href="{{link}}">{{link}}</a></span>
+            
+            <div class="grid">
+                {% for i in range(0, name_len) %} 
+                    <div class="tweet">
+                        <img src="./static/twitter-logo.png" style="float:left; height:27px; width:27px;"/>
+                        <div id="name">{{ name_list[i] }}</div>
+                        <div id="user">@{{ user_list[i] }}</div><br>
+                        <div id="text">"{{ text_list[i] }}"</div><br>
+                        <div id="time">{{ time_list[i] }}</div>
+                    </div>
+                {% endfor %}
+            </div>
         {% endif %}
     </body>
 </html>

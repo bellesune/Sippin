@@ -20,7 +20,6 @@ load_dotenv(dotenv_path)
 
 app = flask.Flask(__name__)
 
-
 #Twitter access keys and tokens, hidden in tweet.env
 consumer_key = os.environ['KEY']
 consumer_secret = os.environ['SECRET']
@@ -54,7 +53,7 @@ def get_recipe(query):
     steps_num = len(json_body["results"][drink]["analyzedInstructions"][0]["steps"])
     steps = [json_body["results"][drink]["analyzedInstructions"][0]["steps"][i]["step"] for i in range(0,steps_num)]
     
-    return idNum, title, prep_time, serving, image, link, steps
+    return idNum, title, prep_time, serving, image, link, steps, totalResults
  
 #get ingredients using id, create a second url and request
 def get_ingredients(idNum):
@@ -105,14 +104,18 @@ def get_tweet():
         drink_list = ["margarita", "mojito", "moscow mule", "martini", "pina colada", "mint julep", "whiskey sour"]
         drink = random.choice(drink_list)
         query = drink
-        
-    #get details and ingredients of query
-    idNum, title, prep_time, serving, image,link, steps = get_recipe(query)
-    ingredients = get_ingredients(idNum)
+      
+    try:    
+      #get details and ingredients of query
+      idNum, title, prep_time, serving, image,link, steps, totalResults = get_recipe(query)
+      ingredients = get_ingredients(idNum)
+      
+      #get quotes based on query
+      name_list, user_list, text_list, time_list = get_quotes(query)
     
-    #get quotes based on query
-    name_list, user_list, text_list, time_list = get_quotes(query)
-    
+    except ValueError:
+      return flask.render_template("index.html", totalResults = 0, query = query)
+      
     return flask.render_template(
         "index.html",
         name_list = name_list,
@@ -127,7 +130,8 @@ def get_tweet():
         image = image,
         steps = steps,
         link = link,
-        ingredients = ingredients
+        ingredients = ingredients,
+        totalResults = totalResults
         )
 
 app.run(
