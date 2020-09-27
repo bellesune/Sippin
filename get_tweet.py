@@ -37,8 +37,6 @@ api = tweepy.API(auth)
 #get basic details, id, title, prep time, serving, image
 def get_recipe(query):
     
-   # query = "mojito"
-    
     url = "https://api.spoonacular.com/recipes/complexSearch?query={}&addRecipeInformation=true&apiKey={}".format(query, spoonacular_key)
     response = requests.get(url)
     json_body = response.json()
@@ -76,13 +74,11 @@ def get_tweet():
     
     if query == None:
         #add featured drinks to page
-        #query = "drink " 
-        drink_list = ["margarita", "mojito", "moscow mule", "martini", "kahlua"]
+        drink_list = ["margarita", "mojito", "moscow mule", "martini", "kahlua", "pina colada", "mint julep", "whiskey sour"]
         drink = random.choice(drink_list)
         query = drink
-        #drink_list.remove(drink)
-    #query += "  drink" #add keyword drink for more relevant results
-    
+        
+    #get details and ingredients of query
     idNum, title, prep_time, serving, image, steps = get_recipe(query)
     ingredients = get_ingredients(idNum)
     
