@@ -9,30 +9,31 @@
     </head>
     
     <body>
-        <h1>{{ title }}</h1>
-        <h3>{{ idNum }}</h3>
-        <h5>prep time {{ prep_time }} mins</h5>
-        <h5>{{ serving }} servings</h5>
-        <img src="{{image}}"/>
-        
-        <ul>
-            {% for x in ingredients %}
-            <li>{{ x }}</li>
-            {%endfor%}
-        </ul>
-        
-        <ol>
-            {% for i in steps %}
-            <li>{{ i }}</li>
-            {%endfor%}
-        </ol>
-        
         <h1 id="title">Mix of Tweets</h1>
         <form method="GET">
             <label for="search"></label>
                 <input type="text" id="search" name="search" placeholder="Enter cocktail">
                 <input type="submit" value="go">
         </form>
+        
+        <h2 id="recipe">{{ title }}</h2>
+        <img id="drink" height="465px" width="465px" src="{{image}}"/>
+        
+        <div id="prep_time"><img height="20px" width="20px" src="./static/time.png" /> {{ prep_time }} mins</div>
+        <div id="serving"> <img height="20px" width="20px" src="./static/serving.png" /> {{ serving }} glass</div>
+        
+        <div id="ingredients-header">Ingredients</div>
+        {% for item in ingredients %}
+            <div class="ingredients">
+                    {{ item }}
+            </div>
+        {%endfor%}
+        
+        {% for step in steps %}
+        <div class="steps">
+                {{ step }}
+        </div>
+        {%endfor%}
         
         {% if name_len == 0 %}
             <div id="else">Cannot find the cocktail. Try 'margarita', 'whiskey sour', or 'cosmopolitan'</div>
