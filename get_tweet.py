@@ -107,7 +107,7 @@ def get_tweet():
         query = drink
         
     #get details and ingredients of query
-    idNum, title, prep_time, serving, image, steps = get_recipe(query)
+    idNum, title, prep_time, serving, image,link, steps = get_recipe(query)
     ingredients = get_ingredients(idNum)
     
     #get quotes based on query
