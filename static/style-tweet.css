@@ -1,9 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Amatic SC');
+@import url('https://fonts.googleapis.com/css?family=Carrois Gothic SC');
+@import url("https://fonts.googleapis.com/css?family=Lover's Quarrel");
+@import url('https://fonts.googleapis.com/css?family=Overpass');
+@import url('https://fonts.googleapis.com/css?family=Stalemate');
+@import url("https://fonts.googleapis.com/css?family=Abel");
+
+@import url('https://fonts.googleapis.com/css?family=BenchNine');
+@import url("https://fonts.googleapis.com/css?family=Karla|Stint Ulta Condensed");
+@import url('https://fonts.googleapis.com/css?family=Hind');
+@import url('https://fonts.googleapis.com/css?family=Marvel|Bubbler One');
+@import url('https://fonts.googleapis.com/css?family=Noto Sans TC');
+@import url("https://fonts.googleapis.com/css?family=Share Tech Mono");
+@import url("https://fonts.googleapis.com/css?family=Quicksand");
+
 body {
     font-family: "Helvetica";
     font-size: 18px;
     color: black;
     text-align: center;
 }
+
 #title {
     font-family: "Rubik Mono One";
     font-size: 110px;
@@ -15,6 +31,53 @@ body {
     background-size: cover;
     padding: 200px;
 }
+
+/*recipe design*/
+
+#drink {
+    filter: drop-shadow(8px 8px 10px gray);
+    border-radius: 15px;
+    margin-bottom: 18px;
+}
+
+#recipe {
+    font-family: "Overpass";
+    font-size: 65px;
+    font-weight: bold;
+    color: black;
+}
+
+#prep_time, #serving {
+    font-family: "Marvel";
+    font-size: 18px;
+    color: black;
+}
+
+#ingredients-header {
+    font-family: "Quicksand";
+    font-size: 27px;
+    font-weight: bold;
+    color: black;
+    margin-top: 10px;
+    margin-bottom: 7px;
+}
+
+.ingredients {
+    font-family: "BenchNine";
+    font-size: 24px;
+    color: black;
+}
+
+.steps {
+    font-family: "Hind";
+    font-size: 24px;
+    color: black;
+    margin-top: 45px;
+    margin-bottom: 75px;
+}
+
+
+/*tweet design*/
 
 #name, #user {
     font-size: 18px;
