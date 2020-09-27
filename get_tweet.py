@@ -34,25 +34,26 @@ auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
-#get basic details, id, title, prep time, serving, image
+#get basic details, id, title, prep time, serving, image, link
 def get_recipe(query):
     
     url = "https://api.spoonacular.com/recipes/complexSearch?query={}&addRecipeInformation=true&apiKey={}".format(query, spoonacular_key)
     response = requests.get(url)
     json_body = response.json()
     
-    drink = 0 #drink index
+    drink = 1 #drink index
     
     idNum = json_body["results"][drink]["id"]
     title = json_body["results"][drink]["title"]
     prep_time = json_body["results"][drink]["readyInMinutes"]
     serving = json_body["results"][drink]["servings"]
     image = json_body["results"][drink]["image"]
+    link = json_body["results"][drink]["sourceUrl"]
     
     steps_num = len(json_body["results"][drink]["analyzedInstructions"][0]["steps"])
     steps = [json_body["results"][drink]["analyzedInstructions"][0]["steps"][i]["step"] for i in range(0,steps_num)]
     
-    return idNum, title, prep_time, serving, image, steps
+    return idNum, title, prep_time, serving, image, link, steps
  
 #get ingredients using id, create a second url and request
 def get_ingredients(idNum):
@@ -74,12 +75,12 @@ def get_tweet():
     
     if query == None:
         #add featured drinks to page
-        drink_list = ["margarita", "mojito", "moscow mule", "martini", "kahlua", "pina colada", "mint julep", "whiskey sour"]
+        drink_list = ["margarita", "mojito", "moscow mule", "martini", "pina colada", "mint julep", "whiskey sour"]
         drink = random.choice(drink_list)
         query = drink
         
     #get details and ingredients of query
-    idNum, title, prep_time, serving, image, steps = get_recipe(query)
+    idNum, title, prep_time, serving, image, link, steps = get_recipe(query)
     ingredients = get_ingredients(idNum)
     
     #request tweets using keyword in full text and english
@@ -115,6 +116,7 @@ def get_tweet():
         serving = serving,
         image = image,
         steps = steps,
+        link = link,
         ingredients = ingredients
         )
 
