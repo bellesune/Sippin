@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Marvel">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=BenchNine">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto Mono">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic SC">
         <link rel="stylesheet" href={{ url_for("static", filename="style-tweet.css") }}>
         <link rel="stylesheet" href={{ url_for("static", filename="undella.ttf") }}>
     </head>
@@ -53,7 +54,7 @@
             <div class="grid">
                 {% for i in range(0, name_len) %} 
                     <div class="tweet">
-                        <img src="./static/twitter-logo.png" style="float:left; height:27px; width:27px;"/><br>
+                        <img src="./static/tweet-logo.jpg" style="float:left; height:24px; width:24px; opacity: 0.93;"/><br>
                         <div id="text">{{ text_list[i] }}</div><br>
                         <div id="time">{{ time_list[i] }}</div>
                         <div id="name">{{ name_list[i] }}</div>

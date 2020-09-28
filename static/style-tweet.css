@@ -3,6 +3,7 @@ body {
     font-size: 18px;
     color: black;
     text-align: center;
+    background-color: #EAE7E0;
 }
 
 #title {
@@ -89,6 +90,7 @@ body {
     opacity: 0.83;
     border-radius: 15px;
     align-items: center;
+    margin-bottom: 45px;
 }
 
 .recipe-content {
@@ -114,20 +116,22 @@ body {
 
 /*tweet design*/
 #tweet-header {
-    font-family: "Marvel";
-    font-size: 27px;
+    font-family: "Amatic SC";
+    font-size: 75px;
     font-weight: bold;
-    color: black;
+    color: white;
     margin-top: 20px;
+    background-color: #9b2c2c;
+    width: 100%;
+    opacity: 0.93;
+    padding: 18px;
     margin-bottom: 5px;
 }
 
 #name, #user {
     font-size: 14px;
-    text-align: center;
     font-family: "Roboto Condensed";
     text-align: left;
-    
 }
 
 #text {
@@ -148,10 +152,9 @@ body {
     width: 100%;
     grid-template-columns: 1fr  1fr 1fr;
     grid-gap: 25px;
-    background-color: #9b2c2c;
+    background-color: #252125;
     opacity: 0.93;
     padding: 55px;
-    margin-top: 100px;
     align-items: center;
 }
 
