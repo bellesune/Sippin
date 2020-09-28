@@ -113,41 +113,57 @@ body {
 
 
 /*tweet design*/
+#tweet-header {
+    font-family: "Marvel";
+    font-size: 27px;
+    font-weight: bold;
+    color: black;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
 
 #name, #user {
-    font-size: 18px;
+    font-size: 14px;
     text-align: center;
-    font-family: "Josefin Slab";
+    font-family: "Roboto Condensed";
+    text-align: left;
+    
 }
 
 #text {
-    font-size: 25px;
-    font-family: "Caveat Brush";
+    font-size: 13px;
+    font-family: "Roboto Mono";
+    margin-top: 15px;
 }
 
 #time {
-    font-size: 13px;
+    font-size: 12px;
     font-family: "Roboto Condensed";
+    text-align: center;
+    margin-bottom: 10px;
 }
 
 .grid {
     display: inline-grid;
-    height: 600px;
-    width: 1200px;
+    width: 100%;
     grid-template-columns: 1fr  1fr 1fr;
     grid-gap: 25px;
     background-color: #9b2c2c;
     opacity: 0.93;
     padding: 55px;
     margin-top: 100px;
+    align-items: center;
 }
 
 .tweet {
     border-radius: 15px;
+    height: 200px;
+    width: 300px;
     padding: 28px;
     color: black;
     background-color: white;
     background-image: url("overlay1.png");
     background-position: center;
     background-size: cover;
+    align-items: center;
 }

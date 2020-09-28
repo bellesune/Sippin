@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Overpass">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Marvel">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=BenchNine">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto Mono">
         <link rel="stylesheet" href={{ url_for("static", filename="style-tweet.css") }}>
         <link rel="stylesheet" href={{ url_for("static", filename="undella.ttf") }}>
     </head>
@@ -48,14 +49,15 @@
                 <div id="recipe_link">source: <a href="{{link}}">{{link}}</a></div>
             </div>
         </div>    
+            <div id="tweet-header">What They Think</div>
             <div class="grid">
                 {% for i in range(0, name_len) %} 
                     <div class="tweet">
-                        <img src="./static/twitter-logo.png" style="float:left; height:27px; width:27px;"/>
-                        <div id="name">{{ name_list[i] }}</div>
-                        <div id="user">@{{ user_list[i] }}</div><br>
-                        <div id="text">"{{ text_list[i] }}"</div><br>
+                        <img src="./static/twitter-logo.png" style="float:left; height:27px; width:27px;"/><br>
+                        <div id="text">{{ text_list[i] }}</div><br>
                         <div id="time">{{ time_list[i] }}</div>
+                        <div id="name">{{ name_list[i] }}</div>
+                        <div id="user">@{{ user_list[i] }}</div>
                     </div>
                 {% endfor %}
             </div>
