@@ -1,18 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Amatic SC');
-@import url('https://fonts.googleapis.com/css?family=Carrois Gothic SC');
-@import url("https://fonts.googleapis.com/css?family=Lover's Quarrel");
-@import url('https://fonts.googleapis.com/css?family=Overpass');
-@import url('https://fonts.googleapis.com/css?family=Stalemate');
-@import url("https://fonts.googleapis.com/css?family=Abel");
-
-@import url('https://fonts.googleapis.com/css?family=BenchNine');
-@import url("https://fonts.googleapis.com/css?family=Karla|Stint Ulta Condensed");
-@import url('https://fonts.googleapis.com/css?family=Hind');
-@import url('https://fonts.googleapis.com/css?family=Marvel|Bubbler One');
-@import url('https://fonts.googleapis.com/css?family=Noto Sans TC');
-@import url("https://fonts.googleapis.com/css?family=Share Tech Mono");
-@import url("https://fonts.googleapis.com/css?family=Quicksand");
-
 body {
     font-family: "Helvetica";
     font-size: 18px;
@@ -38,40 +23,58 @@ body {
 #drink {
     filter: drop-shadow(0px 10px 10px gray);
     border-radius: 15px;
-    margin-right: 65px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
 }
 
-#recipe {
-    font-family: "Overpass";
-    font-size: 35px;
+#recipe-title {
+    font-family: "Undella";
+    font-size: 56px;
     font-weight: bold;
     color: black;
+    margin-bottom: 8px;
+}
+
+#icon-t, #icon-s {
+    margin-right: 8px;
+    height:20px;
+    width: 20px;
 }
 
 #prep_time, #serving {
     font-family: "Marvel";
     font-size: 15px;
     color: black;
+    margin-right: 10px;
 }
 
 #ingredients-header {
-    font-family: "Quicksand";
-    font-size: 23px;
+    font-family: "Marvel";
+    font-size: 24px;
     font-weight: bold;
     color: black;
-    margin-top: 10px;
-    margin-bottom: 7px;
+    margin-top: 20px;
+    margin-bottom: 5px;
 }
 
 .ingredients {
     font-family: "BenchNine";
-    font-size: 20px;
+    font-size: 18px;
     color: black;
 }
 
+#steps-header {
+    font-family: "Marvel";
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 7px;
+}
+
 .steps {
-    /*font-family: "Hind"; */
-     font-family: "Marvel"; 
+    font-family: "BenchNine"; 
     font-size: 20px;
     color: black;
     margin-top: 3px;
@@ -80,7 +83,6 @@ body {
 
 .recipe-card {
     display: inline-grid;
-    height: 1200px;
     width: 800px;
     grid-template-columns: 1fr;
     background-color: #9b2c2c;
@@ -88,7 +90,6 @@ body {
     border-radius: 15px;
     align-items: center;
 }
-
 
 .recipe-content {
     border-radius: 15px;
@@ -100,6 +101,14 @@ body {
     background-size: cover;
     margin-top: 20px;
     margin: 20px;
+}
+
+#recipe_link {
+    font-family: Serif;
+    font-size: 10px;
+    font-style: italic;
+    color: gray;
+    margin-top: 30px;
 }
 
 

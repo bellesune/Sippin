@@ -5,8 +5,11 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik Mono One">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto Condensed">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin Slab">
-        <link rel="stylesheet" href={{ url_for("static", filename="style-tweet.css") }} >
-        <link rel="stylesheet" href={{ url_for("static", filename="undella.ttf") }} >
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Overpass">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Marvel">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=BenchNine">
+        <link rel="stylesheet" href={{ url_for("static", filename="style-tweet.css") }}>
+        <link rel="stylesheet" href={{ url_for("static", filename="undella.ttf") }}>
     </head>
     
     <body>
@@ -22,26 +25,27 @@
         <div class="recipe-card">
             
             <div class="recipe-content">
+                <div id="recipe-title">{{ title }}</div>
                 <img id="drink" height="365px" width="365px" src="{{image}}"/>
-                <h2 id="recipe">{{ title }}</h2>
                 
-                <div id="prep_time"><img height="20px" width="20px" src="./static/time.png" />{{ prep_time }} mins</div>
-                <div id="serving"> <img height="20px" width="20px" src="./static/serving.png" />{{ serving }} glass</div>
+                    <span id="prep_time"><img id="icon-t" src="./static/time.png" />{{ prep_time }} mins</span>
+                    <span id="serving"> <img id="icon-s" src="./static/serving.png" />{{ serving }} servings</span>
                 
-                <div id="ingredients-header">Ingredients</div>
+                <div id="ingredients-header">What You Need</div>
                 {% for item in ingredients %}
                     <div class="ingredients">
                             {{ item }}
                     </div>
                 {%endfor%}
                 
+                <div id="steps-header">How To</div>
                 {% for step in steps %}
                 <div class="steps">
                         {{ step }}
                 </div>
                 {%endfor%}
             
-                <span id="recipe_link">source: <a href="{{link}}">{{link}}</a></span>
+                <div id="recipe_link">source: <a href="{{link}}">{{link}}</a></div>
             </div>
         </div>    
             <div class="grid">
