@@ -11,10 +11,9 @@
     
     <body>
         <div id="title">Sippin'</div>
-        <form method="GET">
-            <label for="search"></label>
-                <input type="text" id="search" name="search" placeholder="Enter cocktail">
-                <input type="submit" value="go">
+        <form id="search" method="GET">
+            <input type="text" id="search" name="search" placeholder="Enter cocktail">
+            <button type="submit"><img height="20px" width="20px" src="./static/search.png"/></button>
         </form>
         {% if totalResults == 0 %}
             <div id="else">Cannot find the {{ query }}. Try <b>margarita</b>, <b>whiskey sour</b>, or <b>mojito</b></div>
