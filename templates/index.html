@@ -1,15 +1,10 @@
 <html>
     <head>
-        <title>Mix of Tweets</title>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Caveat Brush">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik Mono One">
+        <title>Sippin'</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto Condensed">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin Slab">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Overpass">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Marvel">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=BenchNine">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto Mono">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic SC">
         <link rel="stylesheet" href={{ url_for("static", filename="style-tweet.css") }}>
         <link rel="stylesheet" href={{ url_for("static", filename="undella.ttf") }}>
     </head>
@@ -22,14 +17,13 @@
                 <input type="submit" value="go">
         </form>
         {% if totalResults == 0 %}
-            <div id="else">Cannot find the {{ query }}. Try 'margarita', 'whiskey sour', or 'cosmopolitan'</div>
+            <div id="else">Cannot find the {{ query }}. Try <b>margarita</b>, <b>whiskey sour</b>, or <b>mojito</b></div>
         {% else %}
         <div class="recipe-card">
-            
             <div class="recipe-content">
                 <div id="recipe-title">{{ title }}</div>
-                <img id="drink" height="365px" width="365px" src="{{image}}"/>
                 
+                <img id="drink" height="365px" width="365px" src="{{image}}"/>
                     <span id="prep_time"><img id="icon-t" src="./static/time.png" />{{ prep_time }} mins</span>
                     <span id="serving"> <img id="icon-s" src="./static/serving.png" />{{ serving }} servings</span>
                 
@@ -42,11 +36,10 @@
                 
                 <div id="steps-header">How To</div>
                 {% for step in steps %}
-                <div class="steps">
-                        {{ step }}
-                </div>
+                    <div class="steps">
+                            {{ step }}
+                    </div>
                 {%endfor%}
-            
                 <div id="recipe_link">source: <a href="{{link}}">{{link}}</a></div>
             </div>
         </div>    
