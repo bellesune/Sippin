@@ -1,12 +1,8 @@
 import os
-import datetime
-from time import strftime
 import flask
 from flask import Flask
 import random
 from flask import request
-from os.path import join, dirname
-from dotenv import load_dotenv
 from model_tweet import Tweet
 from model_spoonacular import Spoonacular
 
@@ -43,6 +39,7 @@ def index():
       
     return flask.render_template(
         "index.html",
+        query = query,
         name_list = name_list,
         user_list = user_list,
         text_list = text_list,

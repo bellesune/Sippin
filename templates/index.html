@@ -43,6 +43,9 @@
             </div>
         </div>    
             <div id="tweet-header">What They Think</div>
+            {% if name_len == 0 %}
+                <div id="else">No tweets found for '{{ query }}'</div>
+            {% else %}
             <div class="grid">
                 {% for i in range(0, name_len) %} 
                     <div class="tweet">
@@ -54,6 +57,7 @@
                     </div>
                 {% endfor %}
             </div>
+            {% endif %}
         {% endif %}
     </body>
 </html>
