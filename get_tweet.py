@@ -3,36 +3,21 @@ import os
 import datetime
 from time import strftime
 import flask
+from flask import Flask
 import random
 from flask import request
 import requests
-
-#test keys here
 from os.path import join, dirname
 from dotenv import load_dotenv
-dotenv_path = join(dirname(__file__), 'tweet.env')
-load_dotenv(dotenv_path)
 
-dotenv_path2 = join(dirname(__file__), 'spoonacular.env')
-load_dotenv(dotenv_path2)
-
-app = flask.Flask(__name__)
-
-#Twitter access keys and tokens, hidden in tweet.env
-consumer_key = os.environ['KEY']
-consumer_secret = os.environ['SECRET']
-access_token = os.environ['TOKEN']
-access_token_secret = os.environ['TOKEN_SECRET']
-
-#Spoonacular access key, hidden in spoonacular.env
-spoonacular_key = os.environ['SPOONACULAR_KEY']
-
-auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-auth.set_access_token(access_token, access_token_secret)
-api = tweepy.API(auth)
+app = Flask(__name__)
 
 #get basic details, id, title, prep time, serving, image, link
 def get_recipe(query):
+    dotenv_path2 = join(dirname(__file__), 'spoonacular.env')
+    load_dotenv(dotenv_path2)
+    
+    spoonacular_key = os.environ['SPOONACULAR_KEY']
     
     url = "https://api.spoonacular.com/recipes/complexSearch?query={}&addRecipeInformation=true&apiKey={}".format(query, spoonacular_key)
     response = requests.get(url)
@@ -55,6 +40,11 @@ def get_recipe(query):
  
 #get ingredients using id, create a second url and request
 def get_ingredients(idNum):
+    dotenv_path2 = join(dirname(__file__), 'spoonacular.env')
+    load_dotenv(dotenv_path2)
+    
+    spoonacular_key = os.environ['SPOONACULAR_KEY']
+    
     url2 = "https://api.spoonacular.com/recipes/{}/information?includeNutrition=false&apiKey={}".format(idNum, spoonacular_key)
     response2 = requests.get(url2)
     json_body2 = response2.json()
@@ -66,6 +56,18 @@ def get_ingredients(idNum):
  
 #get tweets from twitter
 def get_quotes(query):
+    
+    dotenv_path = join(dirname(__file__), 'tweet.env')
+    load_dotenv(dotenv_path)
+    
+    consumer_key = os.environ['KEY']
+    consumer_secret = os.environ['SECRET']
+    access_token = os.environ['TOKEN']
+    access_token_secret = os.environ['TOKEN_SECRET']
+    
+    auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+    auth.set_access_token(access_token, access_token_secret)
+    api = tweepy.API(auth)
   
     #request tweets using keyword in full text and english
     get_tweets = api.search(query, lang='en', tweet_mode='extended')
