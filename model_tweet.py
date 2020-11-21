@@ -1,7 +1,7 @@
 """ Use Twitter api to retrieve tweets """
-import tweepy
 import os
 from os.path import join, dirname
+import tweepy
 from dotenv import load_dotenv
 
 

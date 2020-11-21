@@ -1,8 +1,8 @@
 """ Use spoonacular api to get recipe info """
 import os
-import requests
 import random
 from os.path import join, dirname
+import requests
 from dotenv import load_dotenv
 
 

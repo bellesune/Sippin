@@ -1,8 +1,8 @@
 """ An app that displays recipes and related Twitter quotes """
 import os
+import random
 import flask
 from flask import Flask
-import random
 from flask import request
 from model_tweet import Tweet
 from model_spoonacular import Spoonacular
